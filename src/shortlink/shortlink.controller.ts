@@ -3,7 +3,7 @@ import { ShortlinkService } from './shortlink.service';
 import { CreateShortlinkDto } from './dto/create-shortlink.dto';
 import { Response } from 'express';
 
-const isValidURL = url => {try { new URL(url); return true } catch(e) { return false }};
+const isValidURL = (url: string) => {try { new URL(url); return true } catch(e) { return false }};
 
 @Controller('shortlink')
 export class ShortlinkController {
@@ -14,11 +14,11 @@ export class ShortlinkController {
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() createShortlinkDto: CreateShortlinkDto, @Res() res: Response) {
     const fullURL = createShortlinkDto.full;
-    if (!isValidURL(fullURL)) {
-      return res.status(400).json({ message: "Incorrect data" });
+    if (!isValidURL(fullURL) || fullURL.length > 1000) {
+      return res.status(400).json({ message: "Incorrect URL" });
     }
 
-    const createdShortlink = await this.shortlinkService.create(createShortlinkDto)
+    const createdShortlink = await this.shortlinkService.create(createShortlinkDto);
   
     return res.json(createdShortlink);
   }
