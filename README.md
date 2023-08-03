@@ -10,8 +10,9 @@ and getting response
 ```
 {
   _id: "someid",
-  short: "somerandomhash"
-  full: "http://example.com"
+  short: "somerandomhash",
+  full: "http://example.com",
+  __v: 0
 }
 ```
 After that, you can access short url by typing in the browser your base domain (where the server is working) and adding short random hash u got from the response, split by a "/".
