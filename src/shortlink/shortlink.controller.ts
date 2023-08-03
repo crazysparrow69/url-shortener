@@ -10,6 +10,6 @@ export class ShortlinkController {
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createShortlinkDto: CreateShortlinkDto) {
-    return `full: ${createShortlinkDto.full}`;
+    return this.shortlinkService.create(createShortlinkDto);
   }
 }
