@@ -14,7 +14,7 @@ and getting response
   full: "http://example.com"
 }
 ```
-After that, you can access short url by typing in the browser your base domain (where the server is working) and adding short random hash, split by a "/".
+After that, you can access short url by typing in the browser your base domain (where the server is working) and adding short random hash u got from the response, split by a "/".
 Example of a short URL: http://localhost:5000/Uy89mJMcQ
 
 ## Installation
@@ -28,5 +28,4 @@ Firstly, you should configure .env file, adding a field DATABASE_URI with your M
 Then:
 
 ```bash
-# watch mode
 $ npm run start:dev
