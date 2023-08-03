@@ -15,10 +15,10 @@ export class ShortlinkController {
   async create(@Body() createShortlinkDto: CreateShortlinkDto, @Res() res: Response) {
     const fullURL = createShortlinkDto.full;
     if (!isValidURL(fullURL)) {
-      return res.status(400).json({ message: "Incorrect data" });
+      return res.status(400).json({ message: "Incorrect URL" });
     }
 
-    const createdShortlink = await this.shortlinkService.create(createShortlinkDto)
+    const createdShortlink = await this.shortlinkService.create(createShortlinkDto);
   
     return res.json(createdShortlink);
   }
