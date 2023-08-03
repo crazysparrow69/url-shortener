@@ -6,12 +6,14 @@ import { ShortlinkService } from './shortlink/shortlink.service';
 import { ShortlinkModule } from './shortlink/shortlink.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Shortlink, ShortlinkSchema } from './shortlink/schemas/shortlink.schema';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 @Module({
   imports: [
     ShortlinkModule,
     MongooseModule.forRoot(
-      'mongodb+srv://crazysparrow:564793@cluster0.8aeyxsx.mongodb.net/url-shortener?retryWrites=true&w=majority',
+      process.env.DATABASE_URI,
     ),
     MongooseModule.forFeature([
       { name: Shortlink.name, schema: ShortlinkSchema },
