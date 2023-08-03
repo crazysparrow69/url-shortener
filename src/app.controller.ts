@@ -10,8 +10,10 @@ export class AppController {
     private readonly shortlinkService: ShortlinkService,
   ) {}
 
-  @Get(":id")
-  redirectToFullURL(@Param("id") id: string, @Res() res: Response): void {
-    return res.redirect(`https://${id}`);
+  @Get(":short")
+  async redirectToFullURL(@Param("short") short: string, @Res() res: Response) {
+    const foundShortlink = await this.shortlinkService.findOne(short);
+    
+    return foundShortlink ? res.redirect(foundShortlink.full) : res.end("404 not found");
   }
 }
